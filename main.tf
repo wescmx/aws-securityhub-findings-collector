@@ -56,9 +56,9 @@ resource "aws_lambda_function" "securityhub_findings_collector" {
 
 # CloudWatch Event Rule (EventBridge)
 resource "aws_cloudwatch_event_rule" "monthly_trigger" {
-  name                = "securityhub-findings-monthly-trigger"
-  description         = "Triggers SecurityHub findings collection on the 1st of each month"
-  schedule_expression = "cron(0 0 1 * ? *)"
+  name                = "securityhub-findings-trigger"
+  description         = "Triggers SecurityHub findings collection based on schedule"
+  schedule_expression = var.findings_schedule
 }
 
 resource "aws_cloudwatch_event_target" "lambda_target" {

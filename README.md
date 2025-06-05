@@ -20,7 +20,13 @@ This Terraform configuration sets up an automated system to collect AWS Security
    aws_region = "your-region"  # Required, specify your AWS region
    bucket_name = "your-bucket-name"  # Required, must be globally unique
    lambda_function_name = "your-function-name"  # Required, name for the Lambda function
+   findings_schedule = "cron(0 0 1 * ? *)"  # Required, schedule for findings collection
    ```
+
+   Schedule expression examples:
+   - Monthly (1st of each month): `cron(0 0 1 * ? *)`
+   - Weekly (every Monday): `cron(0 0 ? * MON *)`
+   - Daily (midnight UTC): `cron(0 0 * * ? *)`
 
 2. Initialize Terraform:
    ```bash
@@ -40,9 +46,9 @@ This Terraform configuration sets up an automated system to collect AWS Security
 ## Features
 
 - Collects CRITICAL and HIGH severity findings from SecurityHub
-- Runs automatically on the 1st of each month
+- Configurable schedule (daily, weekly, or monthly) via cron expression
 - Stores findings in both JSON and CSV formats
-- Files are named with the format `bucket_name/YYYY-MM-DD.{json,csv}`
+- Files are named with the format `bucket_name/YYYY-MM-DD/findings.{json,csv}`
 - Includes proper error handling and pagination for large result sets
 
 ## Output Files
