@@ -17,9 +17,9 @@ This Terraform configuration sets up an automated system to collect AWS Security
 
 1. Create a `terraform.tfvars` file with the following variables:
    ```hcl
-   aws_region = "your-region"  # Optional, defaults to us-east-1
+   aws_region = "your-region"  # Required, specify your AWS region
    bucket_name = "your-bucket-name"  # Required, must be globally unique
-   lambda_function_name = "your-function-name"  # Optional, defaults to securityhub-findings-collector
+   lambda_function_name = "your-function-name"  # Required, name for the Lambda function
    ```
 
 2. Initialize Terraform:
