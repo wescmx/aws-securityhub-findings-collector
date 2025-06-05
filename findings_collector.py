@@ -62,13 +62,11 @@ def lambda_handler(event, context):
 
         next_token = response['NextToken']
 
-    # Generate file names with the requested format
-    # Use current date for both prefix and filename
-    current_date = now.strftime('%Y-%m-%d')
-    base_filename = f'securityhub-findings-{current_date}'
+    # Use the last month's end date for the folder name since that's what we're reporting on
+    report_date = last_month_end.strftime('%Y-%m-%d')
 
     # Generate JSON file
-    json_key = f'{current_date}/{base_filename}.json'
+    json_key = f'{report_date}/findings.json'
     s3.put_object(
         Bucket=bucket_name,
         Key=json_key,
@@ -95,7 +93,7 @@ def lambda_handler(event, context):
     csv_writer.writerow(csv_headers)
     csv_writer.writerows(csv_data)
 
-    csv_key = f'{current_date}/{base_filename}.csv'
+    csv_key = f'{report_date}/findings.csv'
     s3.put_object(
         Bucket=bucket_name,
         Key=csv_key,
