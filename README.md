@@ -59,10 +59,10 @@ s3://bucket_name/YYYY-MM-DD/findings.json  # Raw JSON data of all findings
 s3://bucket_name/YYYY-MM-DD/findings.csv   # CSV format with key finding information
 ```
 
-For example, with bucket name "securityhub-findings", files created on May 1st, 2024 (containing April's findings) would be:
+For example, with bucket name "securityhub-findings", files created on May 1st, 2025 (containing April's findings) would be:
 ```
-s3://securityhub-findings/2024-05-01/findings.json
-s3://securityhub-findings/2024-05-01/findings.csv
+s3://securityhub-findings/2025-05-01/findings.json
+s3://securityhub-findings/2025-05-01/findings.csv
 ```
 
 ## Security Features
