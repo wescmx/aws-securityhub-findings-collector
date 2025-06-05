@@ -15,7 +15,7 @@ This Terraform configuration sets up an automated system to collect AWS Security
 
 ## Configuration
 
-1. Create a `terraform.tfvars` file with the following variables:
+1. Update the `terraform.tfvars` file with the following variables:
    ```hcl
    aws_region = "your-region"  # Required, specify your AWS region
    bucket_name = "your-bucket-name"  # Required, must be globally unique
@@ -42,21 +42,21 @@ This Terraform configuration sets up an automated system to collect AWS Security
 - Collects CRITICAL and HIGH severity findings from SecurityHub
 - Runs automatically on the 1st of each month
 - Stores findings in both JSON and CSV formats
-- Files are named with the format `bucket_name/securityhub-findings-YYYY-MM-DD.{json,csv}`
+- Files are named with the format `bucket_name/YYYY-MM-DD.{json,csv}`
 - Includes proper error handling and pagination for large result sets
 
 ## Output Files
 
 The Lambda function generates two files for each run in the following structure:
 ```
-s3://bucket_name/securityhub-findings-YYYY-MM-DD.json  # Raw JSON data of all findings
-s3://bucket_name/securityhub-findings-YYYY-MM-DD.csv   # CSV format with key finding information
+s3://bucket_name/YYYY-MM-DD/findings.json  # Raw JSON data of all findings
+s3://bucket_name/YYYY-MM-DD/findings.csv   # CSV format with key finding information
 ```
 
 For example, with bucket name "securityhub-findings", files created on May 1st, 2024 (containing April's findings) would be:
 ```
-s3://securityhub-findings/securityhub-findings-2024-05-01.json
-s3://securityhub-findings/securityhub-findings-2024-05-01.csv
+s3://securityhub-findings/2024-05-01/findings.json
+s3://securityhub-findings/2024-05-01/findings.csv
 ```
 
 ## Security Features
