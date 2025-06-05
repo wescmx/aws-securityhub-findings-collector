@@ -1,0 +1,10 @@
+{
+  "version": "0",
+  "id": "test-event",
+  "detail-type": "Scheduled Event",
+  "source": "aws.events",
+  "account": "123456789012",
+  "time": "2024-03-01T00:00:00Z",
+  "region": "us-east-1",
+  "detail": {}
+}
